@@ -21,20 +21,9 @@ include "requestGetter.php";
 
 class wikiRequestGetter implements requestGetter
 {
-    /**
-      * @var int
-      */
-    protected $year;
-
-    /**
-      * @var string
-      */
-    protected $month;
-
-    /**
-      * @var string
-      */
-    protected $filename;
+    protected int $year;
+    protected string $month;
+    protected string $filename;
 
     private function getOrDie(array $request, string $param_name)
     {
