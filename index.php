@@ -35,9 +35,9 @@ $wRG->loadRequest($_GET);
 
 $wO = new wikiOutputter();
 
-$wO->output_art_url("Lincoln Number", 2019, "December");
-$wO->output_art_page("Lincoln Number", 2019);
-$wO->output_art_file_front("Lincoln Number", 2019);
+$wO->output_art_url($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
+$wO->output_art_page($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
+$wO->output_art_file_front($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
 
 ?>
 </body>
