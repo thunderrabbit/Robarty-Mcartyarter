@@ -38,7 +38,9 @@ try
 catch (Exception $e)
 {
     echo 'Caught exception: ',  $e->getMessage(), "<br/>";
-    echo "Try this: <a href='https://arty.robnugen.com/darty/?filename=Linky%20Lee&year=2020&month=January'>https://arty.robnugen.com/darty/?filename=Linky%20Lee&year=2020&month=January</a>";
+    include "classes/wikiInformer.php";
+    $wI = new wikiInformer();
+    $wI->suggestLink("https://arty.robnugen.com/arty/?filename=Linky%20Lee&year=2020&month=January");
     exit;
 }
 $wO = new wikiOutputter();
