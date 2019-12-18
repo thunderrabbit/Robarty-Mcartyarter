@@ -31,8 +31,19 @@ include "classes/wikiRequestGetter.php";
 include "classes/wikiOutputter.php";
 
 $wRG = new wikiRequestGetter();
-$wRG->loadRequest($_GET);
-
+try
+{
+    $wRG->loadRequest($_REQUEST);
+}
+catch (Exception $e)
+{
+    echo 'Caught exception: ',  $e->getMessage(), "<br/>";
+    include "classes/wikiInformer.php";
+    $wI = new wikiInformer();
+    $wI->suggestLink("https://arty.robnugen.com/arty/?filename=Linky%20Lee&year=2020&month=January");
+    $wI->drawForm();
+    exit;
+}
 $wO = new wikiOutputter();
 
 $wO->output_art_url($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
