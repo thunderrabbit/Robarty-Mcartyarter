@@ -27,7 +27,37 @@ class wikiInformer
     }
     public function drawForm()
     {
-        echo "Or fill out this form:<br/>";
-	
+	echo "Or fill out this form:<br/>";
+	$form = <<<FORM
+        <form method="post" action="" name="signup-form">
+            <div class="form-element">
+            <label>Name of piece</label>
+            <input type="text" name="filename" required />
+        </div>
+            <div class="form-element">
+            <label>Month</label>
+            <select name="month" required>
+	        <option>January</option>
+	        <option>February</option>
+	        <option>March</option>
+	        <option>April</option>
+	        <option>May</option>
+	        <option>June</option>
+	        <option>July</option>
+	        <option>August</option>
+	        <option>September</option>
+	        <option>October</option>
+	        <option>November</option>
+	        <option>December</option>
+	    </select>
+        </div>
+            <div class="form-element">
+            <label>Year</label>
+            <input type="text" name="year" pattern="[0-9]*" required />
+        </div>
+            <button type="submit" name="create wikitext" value="create wikitext">Create Wikitext</button>
+        </form>
+FORM;
+        echo $form;
     }
 }
