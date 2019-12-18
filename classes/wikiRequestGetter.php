@@ -21,9 +21,38 @@ include "requestGetter.php";
 
 class wikiRequestGetter implements requestGetter
 {
+    /**
+      * @var int
+      */
+    protected $year;
+
+    /**
+      * @var string
+      */
+    protected $month;
+
+    /**
+      * @var string
+      */
+    protected $filename;
+
+    private function getOrDie(array $request, string $param_name)
+    {
+	if(empty($request[$param_name]))
+	{
+	    throw new Exception('Could not find parameter named ' . $param_name);
+	}
+	else
+	{
+	    return $request[$param_name];
+	}
+    }
+
     /*  Trying to get away from globals, I plan to send the superglobal $_POST or $_GET here */
     public function loadRequest(array $request)
     {
-        print_r($request);
+        $this->year = $this->getOrDie($request, "year");
+        $this->month = $this->getOrDie($request, "month");
+        $this->filename = $this->getOrDie($request, "filename");
     }
 }
