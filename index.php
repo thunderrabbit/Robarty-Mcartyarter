@@ -31,8 +31,15 @@ include "classes/wikiRequestGetter.php";
 include "classes/wikiOutputter.php";
 
 $wRG = new wikiRequestGetter();
-$wRG->loadRequest($_REQUEST);
-
+try
+{
+    $wRG->loadRequest($_REQUEST);
+}
+catch (Exception $e)
+{
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
+    exit;
+}
 $wO = new wikiOutputter();
 
 $wO->output_art_url($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
