@@ -25,6 +25,8 @@ background-color:#eee}
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+ini_set('display_errors', 1);
+
 include "classes/wikiRequestGetter.php";
 include "classes/wikiOutputter.php";
 
