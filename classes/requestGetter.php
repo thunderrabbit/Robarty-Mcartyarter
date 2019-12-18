@@ -1,11 +1,3 @@
-<head>
-<style>
-.url {margin:10px}
-.art_page {padding:20px;
-background-color:#eee}
-</style>
-</head>
-<body>
 <?php
 /*
 	This file is part of Robarty Mcartyarter
@@ -25,19 +17,8 @@ background-color:#eee}
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-ini_set('display_errors', 1);
-
-include "classes/wikiRequestGetter.php";
-include "classes/wikiOutputter.php";
-
-$wRG = new wikiRequestGetter();
-$wRG->loadRequest($_GET);
-
-$wO = new wikiOutputter();
-
-$wO->output_art_url($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
-$wO->output_art_page($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
-$wO->output_art_file_front($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
-
-?>
-</body>
+interface requestGetter
+{
+    /*  Trying to get away from globals, I plan to send the superglobal $_POST or $_GET here */
+    public function loadRequest(array $request);
+}
