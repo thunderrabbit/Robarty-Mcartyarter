@@ -26,11 +26,10 @@ class wikiOutputter
 
     public function output_art_url(string $filename, int $year, string $month)
     {
-	$url_filename = $this->spaces_to_underscores($filename);
+	$url = "https://wiki.robnugen.com/wiki/Art:$filename - $month $year";
+	$underscore_url = $this->spaces_to_underscores($url);
 	echo "<div class = 'url'>";
-        echo nl2br(htmlspecialchars("
-             https://wiki.robnugen.com/wiki/Art:$url_filename" . "_-_" . $month . "_" . $year
-        ));
+        echo "<a href='$underscore_url'>$underscore_url</a>";
 	echo "</div>";
     }
 
