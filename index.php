@@ -41,6 +41,7 @@ catch (Exception $e)
     include "classes/wikiInformer.php";
     $wI = new wikiInformer();
     $wI->suggestLink("https://arty.robnugen.com/arty/?filename=Linky%20Lee&year=2020&month=January");
+    $wI->drawForm();
     exit;
 }
 $wO = new wikiOutputter();

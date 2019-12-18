@@ -23,6 +23,11 @@ class wikiInformer
 {
     public function suggestLink(string $valid_get_url)
     {
-        echo "Try this: <a href='$valid_get_url'>$valid_get_url</a>";
+        echo "<div class='url'>Try this: <a href='$valid_get_url'>$valid_get_url</a></div>";
+    }
+    public function drawForm()
+    {
+        echo "Or fill out this form:<br/>";
+	
     }
 }
