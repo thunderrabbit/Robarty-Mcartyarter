@@ -37,6 +37,19 @@ class wikiRequestGetter implements requestGetter
 	}
     }
 
+    public function getYear() : int
+    {
+	return $this->year;
+    }
+    public function getMonth() : string
+    {
+	return $this->month;
+    }
+    public function getFilename() : string
+    {
+	return $this->filename;
+    }
+
     /*  Trying to get away from globals, I plan to send the superglobal $_POST or $_GET here */
     public function loadRequest(array $request)
     {
