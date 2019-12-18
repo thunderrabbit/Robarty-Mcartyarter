@@ -31,7 +31,7 @@ include "classes/wikiRequestGetter.php";
 include "classes/wikiOutputter.php";
 
 $wRG = new wikiRequestGetter();
-$wRG->loadRequest($_GET);
+$wRG->loadRequest($_REQUEST);
 
 $wO = new wikiOutputter();
 
