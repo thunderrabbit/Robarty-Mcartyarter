@@ -19,6 +19,21 @@
 
 class wikiOutputter
 {
+    private function spaces_to_underscores(string $name_with_spaces)
+    {
+        return str_replace(' ', '_', $name_with_spaces);
+    }
+
+    public function output_art_url(string $filename, int $year, string $month)
+    {
+	$url_filename = $this->spaces_to_underscores($filename);
+	echo "<div class = 'url'>";
+        echo nl2br(htmlspecialchars("
+             https://wiki.robnugen.com/wiki/Art:$url_filename" . "_-_" . $month . "_" . $year
+        ));
+	echo "</div>";
+    }
+
     public function output_art_page(string $filename, int $year)
     {
         echo nl2br(htmlspecialchars("

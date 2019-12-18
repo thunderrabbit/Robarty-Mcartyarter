@@ -21,5 +21,6 @@ include "classes/wikiOutputter.php";
 
 $wO = new wikiOutputter();
 
+$wO->output_art_url("Lincoln Number", 2019, "December");
 $wO->output_art_page("Lincoln Number", 2019);
 $wO->output_art_file_front("Lincoln Number", 2019);
