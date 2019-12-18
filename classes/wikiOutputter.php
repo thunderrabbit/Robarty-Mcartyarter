@@ -19,7 +19,7 @@
 
 class wikiOutputter
 {
-    function output_art_page(string $filename, int $year)
+    public function output_art_page(string $filename, int $year)
     {
         echo nl2br(htmlspecialchars("
         [[File:$filename, $year.jpg|900px|$filename, $year]]
@@ -34,6 +34,19 @@ class wikiOutputter
         [[Category:24cm x 27cm]]
         [[Category:$year]]
         [[Category:art_pages]]
+        "));
+    }
+
+    public function output_art_file_front(string $filename, int $year)
+    {
+        echo nl2br(htmlspecialchars("
+        $filename, $year
+
+        [[Category:Marker]]
+        [[Category:Shikishi]]
+        [[Category:24cm x 27cm]]
+        [[Category:$year]]
+        [[Category:art]]
         "));
     }
 }
