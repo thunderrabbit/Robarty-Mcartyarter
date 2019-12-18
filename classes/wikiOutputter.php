@@ -35,8 +35,9 @@ class wikiOutputter
 
     public function output_art_page(string $filename, int $year)
     {
-        echo nl2br(htmlspecialchars("
-        [[File:$filename, $year.jpg|900px|$filename, $year]]
+        echo "This is for the art Page.  Copy-paste this text into the new art page:<br/>";
+	echo "<div class = 'art_page'>";
+        echo nl2br(htmlspecialchars("[[File:$filename, $year.jpg|900px|$filename, $year]]
         [[File:$filename, back.jpg|thumb|$filename back]]
         
         An experiment in how many times lines could pass under and over one another, I started this in approximately $year.
@@ -49,6 +50,7 @@ class wikiOutputter
         [[Category:$year]]
         [[Category:art_pages]]
         "));
+	echo "</div>";
     }
 
     public function output_art_file_front(string $filename, int $year)
