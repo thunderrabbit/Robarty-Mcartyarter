@@ -56,5 +56,6 @@ class wikiRequestGetter implements requestGetter
         $this->year = $this->getOrDie($request, "year");
         $this->month = $this->getOrDie($request, "month");
         $this->filename = $this->getOrDie($request, "filename");
+	return true;
     }
 }

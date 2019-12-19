@@ -30,26 +30,34 @@ ini_set('display_errors', 1);
 
 include "classes/wikiRequestGetter.php";
 include "classes/wikiOutputter.php";
+include "classes/wikiInformer.php";
 
 $wRG = new wikiRequestGetter();
+$wI = new wikiInformer();
+$requestLoaded = false;
+
 try
 {
-    $wRG->loadRequest($_REQUEST);
+    $requestLoaded = $wRG->loadRequest($_REQUEST);
 }
 catch (Exception $e)
 {
     echo 'Caught exception: ',  $e->getMessage(), "<br/>";
-    include "classes/wikiInformer.php";
-    $wI = new wikiInformer();
     $wI->suggestLink("https://arty.robnugen.com/arty/?filename=Linky%20Lee&year=2020&month=January");
     $wI->drawForm();
-    exit;
 }
-$wO = new wikiOutputter();
 
-$wO->output_art_url($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
-$wO->output_art_page($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
-$wO->output_art_file_front($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
-$wO->output_art_file_back($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
+if($requestLoaded)
+{
+    $wO = new wikiOutputter();
+
+    $wO->output_art_url($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
+    $wO->output_art_page($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
+    $wO->output_art_file_front($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
+    $wO->output_art_file_back($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
+
+    $wI->drawForm();   // will soon get $wRG
+}
+
 ?>
 </body>
