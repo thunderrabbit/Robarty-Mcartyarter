@@ -35,8 +35,8 @@ class wikiOutputter
 
     public function output_art_page(string $filename, int $year, string $month)
     {
-        echo "This is for the art Page.  Copy-paste this text into the new art page:<br/>";
-	echo "<div class = 'art_page'>";
+        echo "<div class='description'>This is for the art Page.  Copy-paste this text into the new art page:</div>";
+	echo "<div class = 'wiki_text'>";
         echo nl2br(htmlspecialchars("[[File:$filename, $year.jpg|900px|$filename, $month $year]]
         [[File:$filename, back.jpg|thumb|$filename back]]
         
@@ -49,22 +49,38 @@ class wikiOutputter
         [[Category:24cm x 27cm]]
         [[Category:$month $year]]
         [[Category:$year]]
-        [[Category:art_pages]]
+        [[Category:Art_Pages]]
         "));
 	echo "</div>";
     }
 
     public function output_art_file_front(string $filename, int $year, string $month)
     {
-        echo nl2br(htmlspecialchars("
-        $filename, $month $year
+        echo "<div class='description'>This is for the art File.  Copy-paste this text for the piece's front image:</div>";
+	echo "<div class = 'wiki_text'>";
+        echo nl2br(htmlspecialchars("$filename, $month $year
 
         [[Category:Marker]]
         [[Category:Shikishi]]
         [[Category:24cm x 27cm]]
         [[Category:$month $year]]
         [[Category:$year]]
-        [[Category:art]]
-        "));
+        [[Category:Art]]"));
+	echo "</div>";   // end class wiki_text
+    }
+
+    public function output_art_file_back(string $filename, int $year, string $month)
+    {
+        echo "<div class='description'>This is for the art (back) File.  Copy-paste this text for the piece's back image:</div>";
+	echo "<div class = 'wiki_text'>";
+        echo nl2br(htmlspecialchars("$filename (back), $month $year
+
+        [[Category:Marker]]
+        [[Category:Shikishi]]
+        [[Category:24cm x 27cm]]
+        [[Category:$month $year]]
+        [[Category:$year]]
+        [[Category:Art_Back]]"));
+	echo "</div>";   // end class wiki_text
     }
 }

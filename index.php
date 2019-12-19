@@ -1,7 +1,8 @@
 <head>
 <style>
 .url {margin:10px}
-.art_page {padding:20px;
+.description {padding:20px 0 0}
+.wiki_text {padding:20px;
 background-color:#eee}
 </style>
 </head>
@@ -49,6 +50,6 @@ $wO = new wikiOutputter();
 $wO->output_art_url($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
 $wO->output_art_page($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
 $wO->output_art_file_front($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
-
+$wO->output_art_file_back($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
 ?>
 </body>
