@@ -43,7 +43,7 @@ try
 catch (Exception $e)
 {
     echo 'Caught exception: ',  $e->getMessage(), "<br/>";
-    $wI->suggestLink("https://arty.robnugen.com/arty/?filename=Linky%20Lee&year=2020&month=January");
+    $wI->suggestLink("?filename=Linky%20Lee&year=2020&month=August");
     $wI->drawForm();
 }
 
