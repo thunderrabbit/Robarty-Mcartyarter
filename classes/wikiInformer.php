@@ -55,6 +55,14 @@ class wikiInformer
 
     public function drawForm(string $filename = null, int $year = null, string $month = null)
     {
+	if($year == null)
+	{
+	    $year = date("Y");
+	}
+	if($month == null)
+	{
+	    $month = date("F");
+	}
 	echo "Or fill out this form:<br/>";
 	$selectedMonthSelect =	$this->selectedMonthSelect($month);
 	$form = <<<FORM
