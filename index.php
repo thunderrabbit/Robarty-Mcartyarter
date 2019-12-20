@@ -43,8 +43,11 @@ try
 catch (Exception $e)
 {
     echo 'Caught exception: ',  $e->getMessage(), "<br/>";
-    $wI->suggestLink("?filename=Linky%20Lee&year=2020&month=August");
-    $wI->drawForm("",date("Y"),date("F"));
+    $current_year = date("Y");
+    $current_month = date("F");
+    $sample_filename = "Linky Leep Year";
+    $wI->suggestLink("?filename=$sample_filename&year=$current_year&month=$current_month");
+    $wI->drawForm($sample_filename,$current_year,$current_month);
 }
 
 if($requestLoaded)
