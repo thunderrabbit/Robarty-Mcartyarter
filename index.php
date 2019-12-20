@@ -56,7 +56,7 @@ if($requestLoaded)
     $wO->output_art_file_front($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
     $wO->output_art_file_back($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
 
-    $wI->drawForm();   // will soon get $wRG
+    $wI->drawForm($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
 }
 
 ?>

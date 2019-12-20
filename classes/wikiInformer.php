@@ -25,14 +25,14 @@ class wikiInformer
     {
         echo "<div class='url'>Try this: <a href='$valid_get_url'>$valid_get_url</a></div>";
     }
-    public function drawForm()
+    public function drawForm(string $filename = null, int $year = null, string $month = null)
     {
 	echo "Or fill out this form:<br/>";
 	$form = <<<FORM
         <form method="post" action="" name="signup-form">
             <div class="form-element">
             <label>Name of piece</label>
-            <input type="text" name="filename" required />
+            <input type="text" name="filename" required value="$filename"/>
         </div>
             <div class="form-element">
             <label>Month</label>
@@ -53,7 +53,7 @@ class wikiInformer
         </div>
             <div class="form-element">
             <label>Year</label>
-            <input type="text" name="year" pattern="[0-9]*" required />
+            <input type="text" name="year" pattern="[0-9]*" value="$year" required />
         </div>
             <button type="submit" name="create wikitext" value="create wikitext">Create Wikitext</button>
         </form>
