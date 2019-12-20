@@ -46,6 +46,13 @@ class wikiInformer
     {
         echo "<div class='url'>Try this: <a href='$valid_get_url'>$valid_get_url</a></div>";
     }
+    public function drawLink(string $filename = null, int $year = null, string $month = null)
+    {
+	$link = "?filename=$filename&year=$year&month=$month";
+	echo "Come back via this link:</br/>";
+        echo "<div class='url'>Try this: <a href='$link'>$link</a></div>";
+    }
+
     public function drawForm(string $filename = null, int $year = null, string $month = null)
     {
 	echo "Or fill out this form:<br/>";
