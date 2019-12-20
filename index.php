@@ -44,7 +44,7 @@ catch (Exception $e)
 {
     echo 'Caught exception: ',  $e->getMessage(), "<br/>";
     $wI->suggestLink("?filename=Linky%20Lee&year=2020&month=August");
-    $wI->drawForm();
+    $wI->drawForm("",date("Y"),date("F"));
 }
 
 if($requestLoaded)
