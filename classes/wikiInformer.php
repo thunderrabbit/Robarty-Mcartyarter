@@ -21,40 +21,56 @@
 
 class wikiInformer
 {
+    protected function selectedMonthSelect(string $selected_month) : string
+    {
+        $cal_info = cal_info(CAL_GREGORIAN);
+	$options = "";
+	foreach($cal_info['months'] as $month_name)
+	{
+	    if($selected_month == $month_name)
+	    {
+		$selected = "selected";
+	    }
+	    else
+	    {
+		$selected = "";
+	    }
+	    $options .= "<option $selected>" . $month_name . "</option>";
+	}
+	return "<select name='month' required>
+                 $options
+	    </select>";
+    }
+
     public function suggestLink(string $valid_get_url)
     {
         echo "<div class='url'>Try this: <a href='$valid_get_url'>$valid_get_url</a></div>";
     }
-    public function drawForm()
+    public function drawLink(string $filename = null, int $year = null, string $month = null)
+    {
+	$link = "?filename=$filename&year=$year&month=$month";
+	echo "Come back via this link:</br/>";
+        echo "<div class='url'>Try this: <a href='$link'>$link</a></div>";
+    }
+
+    public function drawForm(string $filename = null, int $year = null, string $month = null)
     {
 	echo "Or fill out this form:<br/>";
+	$selectedMonthSelect =	$this->selectedMonthSelect($month);
 	$form = <<<FORM
-        <form method="post" action="" name="signup-form">
+        <form method="post" action="?" name="signup-form">
             <div class="form-element">
-            <label>Name of piece</label>
-            <input type="text" name="filename" required />
-        </div>
+                <label>Name of piece</label>
+                <input type="text" name="filename" required value="$filename"/>
+            </div>
             <div class="form-element">
-            <label>Month</label>
-            <select name="month" required>
-	        <option>January</option>
-	        <option>February</option>
-	        <option>March</option>
-	        <option>April</option>
-	        <option>May</option>
-	        <option>June</option>
-	        <option>July</option>
-	        <option>August</option>
-	        <option>September</option>
-	        <option>October</option>
-	        <option>November</option>
-	        <option>December</option>
-	    </select>
-        </div>
+                <label>Month</label>
+		$selectedMonthSelect
+            </div>
             <div class="form-element">
-            <label>Year</label>
-            <input type="text" name="year" pattern="[0-9]*" required />
-        </div>
+                <label>Year</label>
+                <input type="text" name="year" pattern="[0-9]*" value="$year" required />
+            </div>
             <button type="submit" name="create wikitext" value="create wikitext">Create Wikitext</button>
         </form>
 FORM;
