@@ -51,7 +51,7 @@ class wikiInformer
 	echo "Or fill out this form:<br/>";
 	$selectedMonthSelect =	$this->selectedMonthSelect($month);
 	$form = <<<FORM
-        <form method="post" action="" name="signup-form">
+        <form method="post" action="?" name="signup-form">
             <div class="form-element">
                 <label>Name of piece</label>
                 <input type="text" name="filename" required value="$filename"/>
