@@ -21,6 +21,10 @@
 
 class wikiInformer
 {
+    protected function selectedMonthSelect(string $month) : string
+    {
+	return "yo momma";
+    }
     public function suggestLink(string $valid_get_url)
     {
         echo "<div class='url'>Try this: <a href='$valid_get_url'>$valid_get_url</a></div>";
@@ -28,12 +32,14 @@ class wikiInformer
     public function drawForm(string $filename = null, int $year = null, string $month = null)
     {
 	echo "Or fill out this form:<br/>";
+	$selectedMonthSelect =	$this->selectedMonthSelect("bbbb");
 	$form = <<<FORM
         <form method="post" action="" name="signup-form">
             <div class="form-element">
             <label>Name of piece</label>
             <input type="text" name="filename" required value="$filename"/>
         </div>
+$selectedMonthSelect
             <div class="form-element">
             <label>Month</label>
             <select name="month" required>
