@@ -18,8 +18,9 @@
 */
 
 include "requestGetter.php";
+include "genericRequestGetter.php";
 
-class wikiRequestGetter implements requestGetter
+class wikiRequestGetter extends genericRequestGetter implements requestGetter
 {
     protected int $year;
     protected string $month;
