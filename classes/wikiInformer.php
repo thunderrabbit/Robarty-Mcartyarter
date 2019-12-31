@@ -24,7 +24,7 @@ class wikiInformer
     protected function selectedMonthSelect(string $selected_month) : string
     {
         $cal_info = cal_info(CAL_GREGORIAN);
-	$options = "";
+	$options = "<option></option>";
 	foreach($cal_info['months'] as $month_name)
 	{
 	    if($selected_month == $month_name)
@@ -37,7 +37,7 @@ class wikiInformer
 	    }
 	    $options .= "<option $selected>" . $month_name . "</option>";
 	}
-	return "<select name='month' required>
+	return "<select name='month'>
                  $options
 	    </select>";
     }
