@@ -46,14 +46,14 @@ class wikiInformer
     {
         echo "<div class='url'>Try this: <a href='$valid_get_url'>$valid_get_url</a></div>";
     }
-    public function drawLink(string $filename = null, int $year = null, string $month = null)
+    public function drawLink(string $filename = null, string $piece_blurb = null, int $year = null, string $month = null)
     {
-	$link = "?filename=$filename&year=$year&month=$month";
+	$link = "?filename=$filename&piece_blurb=$piece_blurb&year=$year&month=$month";
 	echo "Come back via this link:</br/>";
         echo "<div class='url'>Try this: <a href='$link'>$link</a></div>";
     }
 
-    public function drawForm(string $filename = null, int $year = null, string $month = null)
+    public function drawForm(string $filename = null, string $piece_blurb = null, int $year = null, string $month = null)
     {
 	echo "Or fill out this form:<br/>";
 	$selectedMonthSelect =	$this->selectedMonthSelect($month);
@@ -62,6 +62,10 @@ class wikiInformer
             <div class="form-element">
                 <label>Name of piece</label>
                 <input type="text" name="filename" required value="$filename"/>
+            </div>
+            <div class="form-element">
+                <label>Piece Blurb</label>
+                <input type="text" name="piece_blurb" required value="$piece_blurb"/>
             </div>
             <div class="form-element">
                 <label>Month</label>

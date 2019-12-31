@@ -25,18 +25,7 @@ class wikiRequestGetter extends genericRequestGetter implements requestGetter
     protected int $year;
     protected string $month;
     protected string $filename;
-
-    private function getOrDie(array $request, string $param_name)
-    {
-	if(empty($request[$param_name]))
-	{
-	    throw new Exception('Could not find parameter named ' . $param_name);
-	}
-	else
-	{
-	    return $request[$param_name];
-	}
-    }
+    protected string $piece_blurb;
 
     public function getYear() : int
     {
@@ -50,13 +39,18 @@ class wikiRequestGetter extends genericRequestGetter implements requestGetter
     {
 	return $this->filename;
     }
+    public function getPieceBlurb() : string
+    {
+	return $this->piece_blurb;
+    }
 
     /*  Trying to get away from globals, I plan to send the superglobal $_POST or $_GET here */
     public function loadRequest(array $request)
     {
-        $this->year = $this->getOrDie($request, "year");
-        $this->month = $this->getOrDie($request, "month");
-        $this->filename = $this->getOrDie($request, "filename");
+        $this->year = $this->getOrElse($request, "year") ?: date("Y");			// must be int
+        $this->month = $this->getOrElse($request, "month") ?: date("F");		// must be string
+        $this->filename = $this->getOrElse($request, "filename") ?: "Linky Lee";
+        $this->piece_blurb = $this->getOrElse($request, "piece_blurb", false) ?: "Started in Japan";
 	return true;
     }
 }
