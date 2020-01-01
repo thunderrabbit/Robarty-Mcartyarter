@@ -58,14 +58,21 @@ class wikiOutputter
 
     private function NofM(int $which, int $total, string $of = "of") : string
     {
-	return " " . $which . " " . $of . " " . $total . " ";
+        return " (" . $which . " " . $of . " " . $total . ") ";
     }
 
-    public function output_art_files_front(string $filename, int $year, string $month, int $quantity)
+    private function output_art_file_front_NofM(string $filename, int $year, string $month, int $which, int $quantity)
     {
-        echo "<div class='description'>This is for the art File.  Copy-paste this text for the piece's front image:</div>";
+	if($quantity > 1)
+	{
+            $nofm = $this->NofM($which, $quantity);
+	}
+	else
+	{
+            $nofm = "";
+	}
 	echo "<div class = 'wiki_text'>";
-        echo nl2br(htmlspecialchars("$filename, $month $year
+        echo nl2br(htmlspecialchars("$filename, $nofm  $month $year
 
         [[Category:Marker]]
         [[Category:Shikishi]]
@@ -74,6 +81,12 @@ class wikiOutputter
         [[Category:$year]]
         [[Category:Art]]"));
 	echo "</div>";   // end class wiki_text
+    }
+
+    public function output_art_files_front(string $filename, int $year, string $month, int $quantity)
+    {
+        echo "<div class='description'>This is for the art File.  Copy-paste this text for the piece's front image:</div>";
+	$this->output_art_file_front_NofM($filename, $year, $month, 1, $quantity);
     }
 
     public function output_art_files_back(string $filename, int $year, string $month, int $quantity)
