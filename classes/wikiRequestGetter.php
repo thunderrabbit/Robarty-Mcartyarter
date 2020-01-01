@@ -43,6 +43,10 @@ class wikiRequestGetter extends genericRequestGetter implements requestGetter
     {
 	return $this->piece_blurb;
     }
+    public function getQuantity() : int
+    {
+	return $this->quantity;
+    }
 
     /*  Trying to get away from globals, I plan to send the superglobal $_POST or $_GET here */
     public function loadRequest(array $request)
@@ -51,6 +55,7 @@ class wikiRequestGetter extends genericRequestGetter implements requestGetter
         $this->month = $this->getOrElse($request, "month") ?: date("F");		// must be string
         $this->filename = $this->getOrElse($request, "filename") ?: "Linky Lee";
         $this->piece_blurb = $this->getOrElse($request, "piece_blurb", false) ?: "Started in Japan";
+	$this->quantity = $this->getOrElse($request, "quantity", false) ?: 1;
 	return true;
     }
 }
