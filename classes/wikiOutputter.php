@@ -56,7 +56,7 @@ class wikiOutputter
 	echo "</div>";
     }
 
-    public function output_art_file_front(string $filename, int $year, string $month)
+    public function output_art_file_front(string $filename, int $year, string $month, int $quantity)
     {
         echo "<div class='description'>This is for the art File.  Copy-paste this text for the piece's front image:</div>";
 	echo "<div class = 'wiki_text'>";
@@ -71,7 +71,7 @@ class wikiOutputter
 	echo "</div>";   // end class wiki_text
     }
 
-    public function output_art_file_back(string $filename, int $year, string $month)
+    public function output_art_file_back(string $filename, int $year, string $month, int $quantity)
     {
         echo "<div class='description'>This is for the art (back) File.  Copy-paste this text for the piece's back image:</div>";
 	echo "<div class = 'wiki_text'>";
