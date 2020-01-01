@@ -86,7 +86,11 @@ class wikiOutputter
     public function output_art_files_front(string $filename, int $year, string $month, int $quantity)
     {
         echo "<div class='description'>This is for the art File.  Copy-paste this text for the piece's front image:</div>";
-	$this->output_art_file_front_NofM($filename, $year, $month, 1, $quantity);
+	// loop through entire quantity of images
+	for($count = 1; $count <= $quantity; $count++)
+	{
+            $this->output_art_file_front_NofM($filename, $year, $month, $count, $quantity);
+        }
     }
 
     public function output_art_files_back(string $filename, int $year, string $month, int $quantity)
