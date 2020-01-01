@@ -53,7 +53,7 @@ class wikiInformer
         echo "<div class='url'>Try this: <a href='$link'>$link</a></div>";
     }
 
-    public function drawForm(string $filename = null, string $piece_blurb = null, int $year = null, string $month = null)
+    public function drawForm(string $filename = null, string $piece_blurb = null, int $year = null, string $month = null, int $quantity = null)
     {
 	echo "Or fill out this form:<br/>";
 	$selectedMonthSelect =	$this->selectedMonthSelect($month);
@@ -62,6 +62,10 @@ class wikiInformer
             <div class="form-element">
                 <label>Name of piece</label>
                 <input type="text" name="filename" required value="$filename"/>
+            </div>
+            <div class="form-element">
+                <label>Quantity in set</label>
+                <input type="text" name="quantity" required value="$quantity"/>
             </div>
             <div class="form-element">
                 <label>Piece Blurb</label>
