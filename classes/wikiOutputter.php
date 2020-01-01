@@ -56,6 +56,11 @@ class wikiOutputter
 	echo "</div>";
     }
 
+    private function NofM(int $which, int $total, string $of = "of") : string
+    {
+	return " " . $which . " " . $of . " " . $total . " ";
+    }
+
     public function output_art_file_front(string $filename, int $year, string $month, int $quantity)
     {
         echo "<div class='description'>This is for the art File.  Copy-paste this text for the piece's front image:</div>";
