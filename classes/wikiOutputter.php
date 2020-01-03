@@ -38,18 +38,28 @@ class wikiOutputter
         $nofm = $this->NofM($which, $quantity);
         return "[[File:$filename$nofm, $month $year.jpg|900px|$filename$nofm, $month $year]]\n";
     }
+    private function output_wikilink_to_art_page_back_NofM(string $filename, int $year, string $month, int $which, int $quantity) : string
+    {
+        $nofm = $this->NofM($which, $quantity);
+        return "[[File:$filename, back$nofm.jpg|thumb|$filename back$nofm]]\n";
+    }
     public function output_art_page(string $filename, string $piece_blurb, int $year, string $month, int $quantity)
     {
         $N_front_images = "";
         for($count = 1; $count <= $quantity; $count++)
 	{
-            $N_front_images .= $this->output_wikilink_to_art_page_Front_NofM($filename, $year, $month, $count, $quantity);
+            $N_front_images .= $this->output_wikilink_to_art_page_front_NofM($filename, $year, $month, $count, $quantity);
+        }
+        $N_back_images = "";
+        for($count = 1; $count <= $quantity; $count++)
+	{
+            $N_back_images .= $this->output_wikilink_to_art_page_back_NofM($filename, $year, $month, $count, $quantity);
         }
         echo "<div class='description'>This is for the art Page.  Copy-paste this text into the new art page:</div>";
 	echo "<div class = 'wiki_text'>";
         echo nl2br(htmlspecialchars($N_front_images .
-        "[[File:$filename, back.jpg|thumb|$filename back]]
-        
+        $N_back_images .
+        "
         $piece_blurb
 
         $month $year
