@@ -35,15 +35,7 @@ class wikiOutputter
 
     private function output_wikilink_to_art_page_front_NofM(string $filename, int $year, string $month, int $which, int $quantity) : string
     {
-	if($quantity > 1)
-	{
-            // prepend space to fix comma after filename if no N of M
-            $nofm = " " . $this->NofM($which, $quantity);
-	}
-	else
-	{
-            $nofm = "";
-	}
+        $nofm = $this->NofM($which, $quantity);
         return "[[File:$filename$nofm, $month $year.jpg|900px|$filename$nofm, $month $year]]\n";
     }
     public function output_art_page(string $filename, string $piece_blurb, int $year, string $month, int $quantity)
@@ -74,22 +66,22 @@ class wikiOutputter
 	echo "</div>";
     }
 
-    private function NofM(int $which, int $total, string $of = "of") : string
+    private function NofM(int $which, int $quantity, string $of = "of") : string
     {
-        return " (" . $which . " " . $of . " " . $total . ")";
+	if($quantity > 1)
+	{
+            return " (" . $which . " " . $of . " " . $quantity . ")";
+	}
+	else
+	{
+            return "";
+	}
     }
 
 // eventually return string instead of use side effect of echo
     private function output_art_file_front_NofM(string $filename, int $year, string $month, int $which, int $quantity)
     {
-	if($quantity > 1)
-	{
-            $nofm = $this->NofM($which, $quantity);
-	}
-	else
-	{
-            $nofm = "";
-	}
+        $nofm = $this->NofM($which, $quantity);
 	echo "<div class = 'wiki_text'>";
         echo nl2br(htmlspecialchars("$filename, $nofm $month $year
 
