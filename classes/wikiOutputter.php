@@ -33,13 +33,33 @@ class wikiOutputter
 	echo "</div>";
     }
 
-    public function output_art_page(string $filename, string $piece_blurb, int $year, string $month)
+    private function output_wikilink_to_art_page_front_NofM(string $filename, int $year, string $month, int $which, int $quantity) : string
     {
+        $nofm = $this->NofM($which, $quantity);
+        return "[[File:$filename$nofm, $month $year.jpg|900px|$filename$nofm, $month $year]]\n";
+    }
+    private function output_wikilink_to_art_page_back_NofM(string $filename, int $year, string $month, int $which, int $quantity) : string
+    {
+        $nofm = $this->NofM($which, $quantity);
+        return "[[File:$filename, back$nofm.jpg|thumb|$filename back$nofm]]\n";
+    }
+    public function output_art_page(string $filename, string $piece_blurb, int $year, string $month, int $quantity)
+    {
+        $N_front_images = "";
+        for($count = 1; $count <= $quantity; $count++)
+	{
+            $N_front_images .= $this->output_wikilink_to_art_page_front_NofM($filename, $year, $month, $count, $quantity);
+        }
+        $N_back_images = "";
+        for($count = 1; $count <= $quantity; $count++)
+	{
+            $N_back_images .= $this->output_wikilink_to_art_page_back_NofM($filename, $year, $month, $count, $quantity);
+        }
         echo "<div class='description'>This is for the art Page.  Copy-paste this text into the new art page:</div>";
 	echo "<div class = 'wiki_text'>";
-        echo nl2br(htmlspecialchars("[[File:$filename, $year.jpg|900px|$filename, $month $year]]
-        [[File:$filename, back.jpg|thumb|$filename back]]
-        
+        echo nl2br(htmlspecialchars($N_front_images .
+        $N_back_images .
+        "
         $piece_blurb
 
         $month $year
@@ -56,12 +76,26 @@ class wikiOutputter
 	echo "</div>";
     }
 
-    public function output_art_file_front(string $filename, int $year, string $month)
+    private function NofM(int $which, int $quantity, string $of = "of") : string
     {
-        echo "<div class='description'>This is for the art File.  Copy-paste this text for the piece's front image:</div>";
-	echo "<div class = 'wiki_text'>";
-        echo nl2br(htmlspecialchars("$filename, $month $year
+	if($quantity > 1)
+	{
+            return " (" . $which . " " . $of . " " . $quantity . ")";
+	}
+	else
+	{
+            return "";
+	}
+    }
 
+// eventually return string instead of use side effect of echo
+    private function output_art_file_front_NofM(string $filename, int $year, string $month, int $which, int $quantity)
+    {
+        $nofm = $this->NofM($which, $quantity);
+	echo "<div class = 'wiki_text'>";
+        echo nl2br(htmlspecialchars("$filename, $nofm $month $year
+
+// send these as an array to a separate private function to print categories
         [[Category:Marker]]
         [[Category:Shikishi]]
         [[Category:24cm x 27cm]]
@@ -71,7 +105,17 @@ class wikiOutputter
 	echo "</div>";   // end class wiki_text
     }
 
-    public function output_art_file_back(string $filename, int $year, string $month)
+    public function output_art_files_front(string $filename, int $year, string $month, int $quantity)
+    {
+        echo "<div class='description'>This is for the art File.  Copy-paste this text for the piece's front image:</div>";
+	// loop through entire quantity of images
+	for($count = 1; $count <= $quantity; $count++)
+	{
+            $this->output_art_file_front_NofM($filename, $year, $month, $count, $quantity);
+        }
+    }
+
+    public function output_art_files_back(string $filename, int $year, string $month, int $quantity)
     {
         echo "<div class='description'>This is for the art (back) File.  Copy-paste this text for the piece's back image:</div>";
 	echo "<div class = 'wiki_text'>";

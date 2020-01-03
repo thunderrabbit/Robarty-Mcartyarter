@@ -55,12 +55,12 @@ if($requestLoaded)
     $wO = new wikiOutputter();
 
     $wO->output_art_url($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
-    $wO->output_art_page($wRG->getFilename(), $wRG->getPieceBlurb(), $wRG->getYear(), $wRG->getMonth());
-    $wO->output_art_file_front($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
-    $wO->output_art_file_back($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth());
+    $wO->output_art_page($wRG->getFilename(), $wRG->getPieceBlurb(), $wRG->getYear(), $wRG->getMonth(), $wRG->getQuantity());
+    $wO->output_art_files_front($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth(), $wRG->getQuantity());
+    $wO->output_art_files_back($wRG->getFilename(), $wRG->getYear(), $wRG->getMonth(), $wRG->getQuantity());
 
-    $wI->drawLink($wRG->getFilename(), $wRG->getPieceBlurb(), $wRG->getYear(), $wRG->getMonth());
-    $wI->drawForm($wRG->getFilename(), $wRG->getPieceBlurb(), $wRG->getYear(), $wRG->getMonth());
+    $wI->drawLink($wRG->getFilename(), $wRG->getPieceBlurb(), $wRG->getYear(), $wRG->getMonth(), $wRG->getQuantity());
+    $wI->drawForm($wRG->getFilename(), $wRG->getPieceBlurb(), $wRG->getYear(), $wRG->getMonth(), $wRG->getQuantity());
 }
 
 ?>
