@@ -33,12 +33,30 @@ class wikiOutputter
 	echo "</div>";
     }
 
-    public function output_art_page(string $filename, string $piece_blurb, int $year, string $month)
+    private function output_wikilink_to_art_page_front_NofM(string $filename, int $year, string $month, int $which, int $quantity) : string
     {
+	if($quantity > 1)
+	{
+            // prepend space to fix comma after filename if no N of M
+            $nofm = " " . $this->NofM($which, $quantity);
+	}
+	else
+	{
+            $nofm = "";
+	}
+        return "[[File:$filename$nofm, $month $year.jpg|900px|$filename$nofm, $month $year]]\n";
+    }
+    public function output_art_page(string $filename, string $piece_blurb, int $year, string $month, int $quantity)
+    {
+        $N_front_images = "";
+        for($count = 1; $count <= $quantity; $count++)
+	{
+            $N_front_images .= $this->output_wikilink_to_art_page_Front_NofM($filename, $year, $month, $count, $quantity);
+        }
         echo "<div class='description'>This is for the art Page.  Copy-paste this text into the new art page:</div>";
 	echo "<div class = 'wiki_text'>";
-        echo nl2br(htmlspecialchars("[[File:$filename, $year.jpg|900px|$filename, $month $year]]
-        [[File:$filename, back.jpg|thumb|$filename back]]
+        echo nl2br(htmlspecialchars($N_front_images .
+        "[[File:$filename, back.jpg|thumb|$filename back]]
         
         $piece_blurb
 
@@ -58,9 +76,10 @@ class wikiOutputter
 
     private function NofM(int $which, int $total, string $of = "of") : string
     {
-        return " (" . $which . " " . $of . " " . $total . ") ";
+        return " (" . $which . " " . $of . " " . $total . ")";
     }
 
+// eventually return string instead of use side effect of echo
     private function output_art_file_front_NofM(string $filename, int $year, string $month, int $which, int $quantity)
     {
 	if($quantity > 1)
@@ -72,8 +91,9 @@ class wikiOutputter
             $nofm = "";
 	}
 	echo "<div class = 'wiki_text'>";
-        echo nl2br(htmlspecialchars("$filename, $nofm  $month $year
+        echo nl2br(htmlspecialchars("$filename, $nofm $month $year
 
+// send these as an array to a separate private function to print categories
         [[Category:Marker]]
         [[Category:Shikishi]]
         [[Category:24cm x 27cm]]
